@@ -1,0 +1,441 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B66706141B7C78F4007163E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66706131B7C78F4007163E2 /* AppDelegate.swift */; };
+		B66706171B7C78F4007163E2 /* QuakeMapper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B66706151B7C78F4007163E2 /* QuakeMapper.xcdatamodeld */; };
+		B66706191B7C78F4007163E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66706181B7C78F4007163E2 /* ViewController.swift */; };
+		B667061C1B7C78F4007163E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B667061A1B7C78F4007163E2 /* Main.storyboard */; };
+		B667061E1B7C78F4007163E2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B667061D1B7C78F4007163E2 /* Images.xcassets */; };
+		B66706211B7C78F4007163E2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B667061F1B7C78F4007163E2 /* LaunchScreen.xib */; };
+		B667062D1B7C78F4007163E2 /* QuakeMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B667062C1B7C78F4007163E2 /* QuakeMapperTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B66706271B7C78F4007163E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B66706061B7C78F4007163E2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B667060D1B7C78F4007163E2;
+			remoteInfo = QuakeMapper;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B667060E1B7C78F4007163E2 /* QuakeMapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuakeMapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B66706121B7C78F4007163E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B66706131B7C78F4007163E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B66706161B7C78F4007163E2 /* QuakeMapper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuakeMapper.xcdatamodel; sourceTree = "<group>"; };
+		B66706181B7C78F4007163E2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B667061B1B7C78F4007163E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B667061D1B7C78F4007163E2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B66706201B7C78F4007163E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		B66706261B7C78F4007163E2 /* QuakeMapperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuakeMapperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B667062B1B7C78F4007163E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B667062C1B7C78F4007163E2 /* QuakeMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuakeMapperTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B667060B1B7C78F4007163E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B66706231B7C78F4007163E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B66706051B7C78F4007163E2 = {
+			isa = PBXGroup;
+			children = (
+				B66706101B7C78F4007163E2 /* QuakeMapper */,
+				B66706291B7C78F4007163E2 /* QuakeMapperTests */,
+				B667060F1B7C78F4007163E2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B667060F1B7C78F4007163E2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B667060E1B7C78F4007163E2 /* QuakeMapper.app */,
+				B66706261B7C78F4007163E2 /* QuakeMapperTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B66706101B7C78F4007163E2 /* QuakeMapper */ = {
+			isa = PBXGroup;
+			children = (
+				B66706131B7C78F4007163E2 /* AppDelegate.swift */,
+				B66706181B7C78F4007163E2 /* ViewController.swift */,
+				B667061A1B7C78F4007163E2 /* Main.storyboard */,
+				B667061D1B7C78F4007163E2 /* Images.xcassets */,
+				B667061F1B7C78F4007163E2 /* LaunchScreen.xib */,
+				B66706151B7C78F4007163E2 /* QuakeMapper.xcdatamodeld */,
+				B66706111B7C78F4007163E2 /* Supporting Files */,
+			);
+			path = QuakeMapper;
+			sourceTree = "<group>";
+		};
+		B66706111B7C78F4007163E2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B66706121B7C78F4007163E2 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B66706291B7C78F4007163E2 /* QuakeMapperTests */ = {
+			isa = PBXGroup;
+			children = (
+				B667062C1B7C78F4007163E2 /* QuakeMapperTests.swift */,
+				B667062A1B7C78F4007163E2 /* Supporting Files */,
+			);
+			path = QuakeMapperTests;
+			sourceTree = "<group>";
+		};
+		B667062A1B7C78F4007163E2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B667062B1B7C78F4007163E2 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B667060D1B7C78F4007163E2 /* QuakeMapper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B66706301B7C78F4007163E2 /* Build configuration list for PBXNativeTarget "QuakeMapper" */;
+			buildPhases = (
+				B667060A1B7C78F4007163E2 /* Sources */,
+				B667060B1B7C78F4007163E2 /* Frameworks */,
+				B667060C1B7C78F4007163E2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QuakeMapper;
+			productName = QuakeMapper;
+			productReference = B667060E1B7C78F4007163E2 /* QuakeMapper.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B66706251B7C78F4007163E2 /* QuakeMapperTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B66706331B7C78F4007163E2 /* Build configuration list for PBXNativeTarget "QuakeMapperTests" */;
+			buildPhases = (
+				B66706221B7C78F4007163E2 /* Sources */,
+				B66706231B7C78F4007163E2 /* Frameworks */,
+				B66706241B7C78F4007163E2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B66706281B7C78F4007163E2 /* PBXTargetDependency */,
+			);
+			name = QuakeMapperTests;
+			productName = QuakeMapperTests;
+			productReference = B66706261B7C78F4007163E2 /* QuakeMapperTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B66706061B7C78F4007163E2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = PoneTeller;
+				TargetAttributes = {
+					B667060D1B7C78F4007163E2 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					B66706251B7C78F4007163E2 = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = B667060D1B7C78F4007163E2;
+					};
+				};
+			};
+			buildConfigurationList = B66706091B7C78F4007163E2 /* Build configuration list for PBXProject "QuakeMapper" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B66706051B7C78F4007163E2;
+			productRefGroup = B667060F1B7C78F4007163E2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B667060D1B7C78F4007163E2 /* QuakeMapper */,
+				B66706251B7C78F4007163E2 /* QuakeMapperTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B667060C1B7C78F4007163E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B667061C1B7C78F4007163E2 /* Main.storyboard in Resources */,
+				B66706211B7C78F4007163E2 /* LaunchScreen.xib in Resources */,
+				B667061E1B7C78F4007163E2 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B66706241B7C78F4007163E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B667060A1B7C78F4007163E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B66706191B7C78F4007163E2 /* ViewController.swift in Sources */,
+				B66706171B7C78F4007163E2 /* QuakeMapper.xcdatamodeld in Sources */,
+				B66706141B7C78F4007163E2 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B66706221B7C78F4007163E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B667062D1B7C78F4007163E2 /* QuakeMapperTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B66706281B7C78F4007163E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B667060D1B7C78F4007163E2 /* QuakeMapper */;
+			targetProxy = B66706271B7C78F4007163E2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B667061A1B7C78F4007163E2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B667061B1B7C78F4007163E2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B667061F1B7C78F4007163E2 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B66706201B7C78F4007163E2 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B667062E1B7C78F4007163E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B667062F1B7C78F4007163E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B66706311B7C78F4007163E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = QuakeMapper/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B66706321B7C78F4007163E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = QuakeMapper/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		B66706341B7C78F4007163E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = QuakeMapperTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QuakeMapper.app/QuakeMapper";
+			};
+			name = Debug;
+		};
+		B66706351B7C78F4007163E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = QuakeMapperTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QuakeMapper.app/QuakeMapper";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B66706091B7C78F4007163E2 /* Build configuration list for PBXProject "QuakeMapper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B667062E1B7C78F4007163E2 /* Debug */,
+				B667062F1B7C78F4007163E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B66706301B7C78F4007163E2 /* Build configuration list for PBXNativeTarget "QuakeMapper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B66706311B7C78F4007163E2 /* Debug */,
+				B66706321B7C78F4007163E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B66706331B7C78F4007163E2 /* Build configuration list for PBXNativeTarget "QuakeMapperTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B66706341B7C78F4007163E2 /* Debug */,
+				B66706351B7C78F4007163E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B66706151B7C78F4007163E2 /* QuakeMapper.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B66706161B7C78F4007163E2 /* QuakeMapper.xcdatamodel */,
+			);
+			currentVersion = B66706161B7C78F4007163E2 /* QuakeMapper.xcdatamodel */;
+			path = QuakeMapper.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = B66706061B7C78F4007163E2 /* Project object */;
+}
