@@ -74,7 +74,6 @@
 		B66706451B7C7BA0007163E2 /* QuakeMapperClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuakeMapperClient.swift; sourceTree = "<group>"; };
 		B66706471B7C7D25007163E2 /* QuakeMapperConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuakeMapperConstants.swift; sourceTree = "<group>"; };
 		B6BCFB3A1B8C59340015992A /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
-		B6D3D02F1B947380006BE5FD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,7 +140,6 @@
 		B66706101B7C78F4007163E2 /* QuakeMapper */ = {
 			isa = PBXGroup;
 			children = (
-				B6D3D02F1B947380006BE5FD /* README.md */,
 				B66706441B7C7B87007163E2 /* Model */,
 				B633A02F1B81DA8B00528482 /* View */,
 				B63775611B8AD23600630DB1 /* Controller */,

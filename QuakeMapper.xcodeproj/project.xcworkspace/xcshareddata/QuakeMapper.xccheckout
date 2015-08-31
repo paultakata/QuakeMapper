@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>6E1920F5-F346-4B25-AE88-1B2D81E4219A</string>
+	<key>IDESourceControlProjectName</key>
+	<string>QuakeMapper</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>DD2019D8D9882F2F34E94567685A2855ED3F4697</key>
+		<string>github.com:paultakata/QuakeMapper.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>QuakeMapper.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>DD2019D8D9882F2F34E94567685A2855ED3F4697</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:paultakata/QuakeMapper.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>DD2019D8D9882F2F34E94567685A2855ED3F4697</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>DD2019D8D9882F2F34E94567685A2855ED3F4697</string>
+			<key>IDESourceControlWCCName</key>
+			<string>QuakeMapper</string>
+		</dict>
+	</array>
+</dict>
+</plist>
