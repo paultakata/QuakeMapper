@@ -1,4 +1,48 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14F27" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Earthquake" representedClassName="Earthquake" syncable="YES">
+        <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="latitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="magnitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="mapThumbnailImageFilePath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="placeText" attributeType="String" syncable="YES"/>
+        <attribute name="receivedTitle" attributeType="String" syncable="YES"/>
+        <attribute name="time" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="timezone" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="tweetsAvailable" attributeType="Boolean" indexed="YES" syncable="YES"/>
+        <attribute name="url" attributeType="String" syncable="YES"/>
+        <relationship name="tweets" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Tweet" inverseName="earthquake" inverseEntity="Tweet" syncable="YES"/>
+        <relationship name="webcams" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Webcam" inverseName="earthquake" inverseEntity="Webcam" syncable="YES"/>
+    </entity>
+    <entity name="Tweet" representedClassName="Tweet" syncable="YES">
+        <attribute name="tweet" attributeType="Transformable" syncable="YES"/>
+        <attribute name="tweetID" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="earthquake" maxCount="1" deletionRule="Nullify" destinationEntity="Earthquake" inverseName="tweets" inverseEntity="Earthquake" syncable="YES"/>
+    </entity>
+    <entity name="Webcam" representedClassName="Webcam" syncable="YES">
+        <attribute name="iconImageFilePath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="iconURL" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="linkEmbedDayURL" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="previewImageFilePath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="previewURL" attributeType="String" syncable="YES"/>
+        <attribute name="thumbnailURL" attributeType="String" syncable="YES"/>
+        <attribute name="timelapseAvailable" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="timelapseMp4URL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timelapseWebmURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timezoneOffset" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <attribute name="toenailURL" attributeType="String" syncable="YES"/>
+        <attribute name="url" attributeType="String" syncable="YES"/>
+        <attribute name="urlMobile" attributeType="String" syncable="YES"/>
+        <attribute name="webcamID" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="earthquake" maxCount="1" deletionRule="Nullify" destinationEntity="Earthquake" inverseName="webcams" inverseEntity="Earthquake" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Earthquake" positionX="-63" positionY="-18" width="128" height="240"/>
+        <element name="Tweet" positionX="-272" positionY="90" width="128" height="90"/>
+        <element name="Webcam" positionX="171" positionY="-96" width="128" height="315"/>
+    </elements>
 </model>

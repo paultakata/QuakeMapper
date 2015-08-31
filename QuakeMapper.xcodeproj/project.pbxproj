@@ -7,13 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B62905411B8EDF7E00227A19 /* TweetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62905401B8EDF7E00227A19 /* TweetDetailViewController.swift */; };
+		B633A02C1B81C11E00528482 /* QuakeMapperConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = B633A02B1B81C11E00528482 /* QuakeMapperConvenience.swift */; };
+		B63775601B8AD12400630DB1 /* WebcamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B637755F1B8AD12400630DB1 /* WebcamCollectionViewCell.swift */; };
+		B63775631B8AD2B000630DB1 /* TweetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63775621B8AD2B000630DB1 /* TweetTableViewController.swift */; };
+		B63775651B8AD2DB00630DB1 /* WebcamCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63775641B8AD2DB00630DB1 /* WebcamCollectionViewController.swift */; };
+		B651831C1B7DC39E00F67CD6 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B651831B1B7DC39E00F67CD6 /* Tweet.swift */; };
+		B651831E1B7DC3AF00F67CD6 /* Earthquake.swift in Sources */ = {isa = PBXBuildFile; fileRef = B651831D1B7DC3AF00F67CD6 /* Earthquake.swift */; };
+		B65183201B7DC3BF00F67CD6 /* Webcam.swift in Sources */ = {isa = PBXBuildFile; fileRef = B651831F1B7DC3BF00F67CD6 /* Webcam.swift */; };
+		B657C3621B830CB5003A5780 /* EarthquakeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B657C3611B830CB5003A5780 /* EarthquakeTableViewCell.swift */; };
+		B657C3641B830E4A003A5780 /* EarthquakeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B657C3631B830E4A003A5780 /* EarthquakeTableViewController.swift */; };
 		B66706141B7C78F4007163E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66706131B7C78F4007163E2 /* AppDelegate.swift */; };
 		B66706171B7C78F4007163E2 /* QuakeMapper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B66706151B7C78F4007163E2 /* QuakeMapper.xcdatamodeld */; };
-		B66706191B7C78F4007163E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66706181B7C78F4007163E2 /* ViewController.swift */; };
+		B66706191B7C78F4007163E2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66706181B7C78F4007163E2 /* MapViewController.swift */; };
 		B667061C1B7C78F4007163E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B667061A1B7C78F4007163E2 /* Main.storyboard */; };
 		B667061E1B7C78F4007163E2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B667061D1B7C78F4007163E2 /* Images.xcassets */; };
 		B66706211B7C78F4007163E2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B667061F1B7C78F4007163E2 /* LaunchScreen.xib */; };
 		B667062D1B7C78F4007163E2 /* QuakeMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B667062C1B7C78F4007163E2 /* QuakeMapperTests.swift */; };
+		B667063B1B7C7957007163E2 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B66706371B7C7957007163E2 /* Fabric.framework */; };
+		B667063C1B7C7957007163E2 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B66706381B7C7957007163E2 /* TwitterKit.framework */; };
+		B667063D1B7C7957007163E2 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B66706391B7C7957007163E2 /* TwitterKitResources.bundle */; };
+		B667063E1B7C7957007163E2 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B667063A1B7C7957007163E2 /* TwitterCore.framework */; };
+		B66706421B7C7A5A007163E2 /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66706411B7C7A5A007163E2 /* CoreDataStackManager.swift */; };
+		B66706461B7C7BA0007163E2 /* QuakeMapperClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66706451B7C7BA0007163E2 /* QuakeMapperClient.swift */; };
+		B66706481B7C7D25007163E2 /* QuakeMapperConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66706471B7C7D25007163E2 /* QuakeMapperConstants.swift */; };
+		B6BCFB3B1B8C59340015992A /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BCFB3A1B8C59340015992A /* WebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,17 +45,36 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B62905401B8EDF7E00227A19 /* TweetDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetDetailViewController.swift; sourceTree = "<group>"; };
+		B633A02B1B81C11E00528482 /* QuakeMapperConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuakeMapperConvenience.swift; sourceTree = "<group>"; };
+		B637755F1B8AD12400630DB1 /* WebcamCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebcamCollectionViewCell.swift; sourceTree = "<group>"; };
+		B63775621B8AD2B000630DB1 /* TweetTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewController.swift; sourceTree = "<group>"; };
+		B63775641B8AD2DB00630DB1 /* WebcamCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebcamCollectionViewController.swift; sourceTree = "<group>"; };
+		B651831B1B7DC39E00F67CD6 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
+		B651831D1B7DC3AF00F67CD6 /* Earthquake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Earthquake.swift; sourceTree = "<group>"; };
+		B651831F1B7DC3BF00F67CD6 /* Webcam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Webcam.swift; sourceTree = "<group>"; };
+		B657C3611B830CB5003A5780 /* EarthquakeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EarthquakeTableViewCell.swift; sourceTree = "<group>"; };
+		B657C3631B830E4A003A5780 /* EarthquakeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EarthquakeTableViewController.swift; sourceTree = "<group>"; };
 		B667060E1B7C78F4007163E2 /* QuakeMapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuakeMapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B66706121B7C78F4007163E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B66706131B7C78F4007163E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B66706161B7C78F4007163E2 /* QuakeMapper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuakeMapper.xcdatamodel; sourceTree = "<group>"; };
-		B66706181B7C78F4007163E2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B66706181B7C78F4007163E2 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B667061B1B7C78F4007163E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B667061D1B7C78F4007163E2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B66706201B7C78F4007163E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		B66706261B7C78F4007163E2 /* QuakeMapperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuakeMapperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B667062B1B7C78F4007163E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B667062C1B7C78F4007163E2 /* QuakeMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuakeMapperTests.swift; sourceTree = "<group>"; };
+		B66706371B7C7957007163E2 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		B66706381B7C7957007163E2 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
+		B66706391B7C7957007163E2 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
+		B667063A1B7C7957007163E2 /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterCore.framework; sourceTree = "<group>"; };
+		B66706411B7C7A5A007163E2 /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
+		B66706451B7C7BA0007163E2 /* QuakeMapperClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuakeMapperClient.swift; sourceTree = "<group>"; };
+		B66706471B7C7D25007163E2 /* QuakeMapperConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuakeMapperConstants.swift; sourceTree = "<group>"; };
+		B6BCFB3A1B8C59340015992A /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		B6D3D02F1B947380006BE5FD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +82,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B667063B1B7C7957007163E2 /* Fabric.framework in Frameworks */,
+				B667063E1B7C7957007163E2 /* TwitterCore.framework in Frameworks */,
+				B667063C1B7C7957007163E2 /* TwitterKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +98,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B633A02F1B81DA8B00528482 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B657C3611B830CB5003A5780 /* EarthquakeTableViewCell.swift */,
+				B637755F1B8AD12400630DB1 /* WebcamCollectionViewCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		B63775611B8AD23600630DB1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B66706181B7C78F4007163E2 /* MapViewController.swift */,
+				B657C3631B830E4A003A5780 /* EarthquakeTableViewController.swift */,
+				B63775621B8AD2B000630DB1 /* TweetTableViewController.swift */,
+				B63775641B8AD2DB00630DB1 /* WebcamCollectionViewController.swift */,
+				B6BCFB3A1B8C59340015992A /* WebViewController.swift */,
+				B62905401B8EDF7E00227A19 /* TweetDetailViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		B66706051B7C78F4007163E2 = {
 			isa = PBXGroup;
 			children = (
@@ -79,12 +141,11 @@
 		B66706101B7C78F4007163E2 /* QuakeMapper */ = {
 			isa = PBXGroup;
 			children = (
-				B66706131B7C78F4007163E2 /* AppDelegate.swift */,
-				B66706181B7C78F4007163E2 /* ViewController.swift */,
-				B667061A1B7C78F4007163E2 /* Main.storyboard */,
-				B667061D1B7C78F4007163E2 /* Images.xcassets */,
-				B667061F1B7C78F4007163E2 /* LaunchScreen.xib */,
-				B66706151B7C78F4007163E2 /* QuakeMapper.xcdatamodeld */,
+				B6D3D02F1B947380006BE5FD /* README.md */,
+				B66706441B7C7B87007163E2 /* Model */,
+				B633A02F1B81DA8B00528482 /* View */,
+				B63775611B8AD23600630DB1 /* Controller */,
+				B66706431B7C7B7D007163E2 /* Client */,
 				B66706111B7C78F4007163E2 /* Supporting Files */,
 			);
 			path = QuakeMapper;
@@ -93,6 +154,12 @@
 		B66706111B7C78F4007163E2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B667063F1B7C7A00007163E2 /* Frameworks */,
+				B66706401B7C7A12007163E2 /* Storyboards */,
+				B66706131B7C78F4007163E2 /* AppDelegate.swift */,
+				B66706411B7C7A5A007163E2 /* CoreDataStackManager.swift */,
+				B66706151B7C78F4007163E2 /* QuakeMapper.xcdatamodeld */,
+				B667061D1B7C78F4007163E2 /* Images.xcassets */,
 				B66706121B7C78F4007163E2 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -115,6 +182,47 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		B667063F1B7C7A00007163E2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B66706371B7C7957007163E2 /* Fabric.framework */,
+				B66706381B7C7957007163E2 /* TwitterKit.framework */,
+				B66706391B7C7957007163E2 /* TwitterKitResources.bundle */,
+				B667063A1B7C7957007163E2 /* TwitterCore.framework */,
+			);
+			name = Frameworks;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		B66706401B7C7A12007163E2 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				B667061A1B7C78F4007163E2 /* Main.storyboard */,
+				B667061F1B7C78F4007163E2 /* LaunchScreen.xib */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		B66706431B7C7B7D007163E2 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				B66706451B7C7BA0007163E2 /* QuakeMapperClient.swift */,
+				B633A02B1B81C11E00528482 /* QuakeMapperConvenience.swift */,
+				B66706471B7C7D25007163E2 /* QuakeMapperConstants.swift */,
+			);
+			name = Client;
+			sourceTree = "<group>";
+		};
+		B66706441B7C7B87007163E2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B651831D1B7DC3AF00F67CD6 /* Earthquake.swift */,
+				B651831B1B7DC39E00F67CD6 /* Tweet.swift */,
+				B651831F1B7DC3BF00F67CD6 /* Webcam.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -125,6 +233,7 @@
 				B667060A1B7C78F4007163E2 /* Sources */,
 				B667060B1B7C78F4007163E2 /* Frameworks */,
 				B667060C1B7C78F4007163E2 /* Resources */,
+				B66706361B7C793A007163E2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -195,6 +304,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B667063D1B7C7957007163E2 /* TwitterKitResources.bundle in Resources */,
 				B667061C1B7C78F4007163E2 /* Main.storyboard in Resources */,
 				B66706211B7C78F4007163E2 /* LaunchScreen.xib in Resources */,
 				B667061E1B7C78F4007163E2 /* Images.xcassets in Resources */,
@@ -210,14 +320,44 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B66706361B7C793A007163E2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 606815bb20cfc4139a171f007e1769cd67f3a636 edd8975c7e94123e0a968fc0e868f5bbf7a0847c36a52b89433cb2a29ddca0ab";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B667060A1B7C78F4007163E2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B66706191B7C78F4007163E2 /* ViewController.swift in Sources */,
+				B66706191B7C78F4007163E2 /* MapViewController.swift in Sources */,
+				B657C3641B830E4A003A5780 /* EarthquakeTableViewController.swift in Sources */,
+				B66706421B7C7A5A007163E2 /* CoreDataStackManager.swift in Sources */,
+				B63775601B8AD12400630DB1 /* WebcamCollectionViewCell.swift in Sources */,
+				B657C3621B830CB5003A5780 /* EarthquakeTableViewCell.swift in Sources */,
 				B66706171B7C78F4007163E2 /* QuakeMapper.xcdatamodeld in Sources */,
+				B651831C1B7DC39E00F67CD6 /* Tweet.swift in Sources */,
 				B66706141B7C78F4007163E2 /* AppDelegate.swift in Sources */,
+				B66706481B7C7D25007163E2 /* QuakeMapperConstants.swift in Sources */,
+				B63775651B8AD2DB00630DB1 /* WebcamCollectionViewController.swift in Sources */,
+				B63775631B8AD2B000630DB1 /* TweetTableViewController.swift in Sources */,
+				B62905411B8EDF7E00227A19 /* TweetDetailViewController.swift in Sources */,
+				B633A02C1B81C11E00528482 /* QuakeMapperConvenience.swift in Sources */,
+				B6BCFB3B1B8C59340015992A /* WebViewController.swift in Sources */,
+				B651831E1B7DC3AF00F67CD6 /* Earthquake.swift in Sources */,
+				B66706461B7C7BA0007163E2 /* QuakeMapperClient.swift in Sources */,
+				B65183201B7DC3BF00F67CD6 /* Webcam.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +484,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = QuakeMapper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -354,6 +498,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = QuakeMapper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -413,6 +561,7 @@
 				B66706321B7C78F4007163E2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B66706331B7C78F4007163E2 /* Build configuration list for PBXNativeTarget "QuakeMapperTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +570,7 @@
 				B66706351B7C78F4007163E2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
