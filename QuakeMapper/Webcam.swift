@@ -16,24 +16,26 @@ class Webcam: NSManagedObject, MKAnnotation {
     
     //MARK: - Properties
     
-    @NSManaged var webcamID:               String
-    @NSManaged var title:                  String
-    @NSManaged var url:                    String
-    @NSManaged var urlMobile:              String
-    @NSManaged var latitude:               Double
-    @NSManaged var longitude:              Double
-    @NSManaged var timelapseAvailable:     Bool
-    @NSManaged var timelapseMp4URL:        String?
-    @NSManaged var timelapseWebmURL:       String?
-    @NSManaged var linkEmbedDayURL:        String
-    @NSManaged var timezoneOffset:         Double
-    @NSManaged var iconURL:                String
-    @NSManaged var thumbnailURL:           String
-    @NSManaged var toenailURL:             String
-    @NSManaged var previewURL:             String
+    @NSManaged var webcamID:             String
+    @NSManaged var title:                String
+    @NSManaged var url:                  String
+    @NSManaged var urlMobile:            String
+    @NSManaged var latitude:             Double
+    @NSManaged var longitude:            Double
+    @NSManaged var timelapseAvailable:   Bool
+    @NSManaged var timelapseMp4URL:      String?
+    @NSManaged var timelapseWebmURL:     String?
+    @NSManaged var linkEmbedDayURL:      String
+    @NSManaged var timezoneOffset:       Double
+    @NSManaged var iconURL:              String
+    @NSManaged var thumbnailURL:         String
+    @NSManaged var toenailURL:           String
+    @NSManaged var previewURL:           String
     
-    @NSManaged var previewImageFilePath:   String?
-    @NSManaged var iconImageFilePath:      String?
+    @NSManaged var previewImageFilePath: String?
+    @NSManaged var iconImageFilePath:    String?
+    
+    var safeCoordinate: CLLocationCoordinate2D? = nil
     
     //MARK: Relationships
     
@@ -43,7 +45,7 @@ class Webcam: NSManagedObject, MKAnnotation {
     
     var coordinate: CLLocationCoordinate2D {
         
-        return CLLocationCoordinate2DMake(latitude, longitude)
+        return safeCoordinate!
     }
     
     var previewImage: UIImage? {
@@ -81,6 +83,8 @@ class Webcam: NSManagedObject, MKAnnotation {
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         
         super.init(entity: entity, insertIntoManagedObjectContext: context)
+        
+        safeCoordinate = CLLocationCoordinate2DMake(latitude, longitude)
     }
     
     init(dictionary: [String : AnyObject], quake: Earthquake, context: NSManagedObjectContext) {
@@ -117,6 +121,7 @@ class Webcam: NSManagedObject, MKAnnotation {
         self.previewURL     = dictionary[QuakeMapperClient.WebcamsTravelJSONResponseKeys.PreviewURL]     as! String
         
         self.earthquake = quake
+        safeCoordinate = CLLocationCoordinate2DMake(latitude, longitude)
     }
     
     //MARK: Core Data

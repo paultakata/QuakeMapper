@@ -28,6 +28,8 @@ class Earthquake: NSManagedObject, MKAnnotation {
     @NSManaged var tweetsAvailable:           Bool
     @NSManaged var mapThumbnailImageFilePath: String?
     
+    var safeCoordinate: CLLocationCoordinate2D? = nil
+    
     //MARK: Relationships
     
     @NSManaged var tweets:                    NSMutableOrderedSet
@@ -37,7 +39,7 @@ class Earthquake: NSManagedObject, MKAnnotation {
     
     var coordinate: CLLocationCoordinate2D {
         
-        return CLLocationCoordinate2DMake(latitude, longitude)
+        return safeCoordinate!
     }
     
     var title: String {
@@ -93,6 +95,8 @@ class Earthquake: NSManagedObject, MKAnnotation {
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         
         super.init(entity: entity, insertIntoManagedObjectContext: context)
+        
+        safeCoordinate = CLLocationCoordinate2DMake(latitude, longitude)
     }
     
     init(dictionary: [String : AnyObject], context: NSManagedObjectContext) {
@@ -131,6 +135,7 @@ class Earthquake: NSManagedObject, MKAnnotation {
         }
         
         self.id = dictionary[QuakeMapperClient.USGSJSONResponseKeys.ID] as! String
+        safeCoordinate = CLLocationCoordinate2DMake(latitude, longitude)
     }
     
     //MARK: - Core Data

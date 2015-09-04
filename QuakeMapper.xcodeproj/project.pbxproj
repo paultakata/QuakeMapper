@@ -32,6 +32,7 @@
 		B66706461B7C7BA0007163E2 /* QuakeMapperClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66706451B7C7BA0007163E2 /* QuakeMapperClient.swift */; };
 		B66706481B7C7D25007163E2 /* QuakeMapperConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66706471B7C7D25007163E2 /* QuakeMapperConstants.swift */; };
 		B6BCFB3B1B8C59340015992A /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BCFB3A1B8C59340015992A /* WebViewController.swift */; };
+		B6F86B7D1B98225000045DA4 /* DDExpandableButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F86B7C1B98225000045DA4 /* DDExpandableButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,9 @@
 		B66706451B7C7BA0007163E2 /* QuakeMapperClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuakeMapperClient.swift; sourceTree = "<group>"; };
 		B66706471B7C7D25007163E2 /* QuakeMapperConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuakeMapperConstants.swift; sourceTree = "<group>"; };
 		B6BCFB3A1B8C59340015992A /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		B6F86B7B1B98225000045DA4 /* DDExpandableButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDExpandableButton.h; sourceTree = "<group>"; };
+		B6F86B7C1B98225000045DA4 /* DDExpandableButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDExpandableButton.m; sourceTree = "<group>"; };
+		B6F86B7F1B9825BD00045DA4 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,7 @@
 		B633A02F1B81DA8B00528482 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B6F86B7E1B98225800045DA4 /* DDExpandableButton */,
 				B657C3611B830CB5003A5780 /* EarthquakeTableViewCell.swift */,
 				B637755F1B8AD12400630DB1 /* WebcamCollectionViewCell.swift */,
 			);
@@ -219,6 +224,16 @@
 				B651831F1B7DC3BF00F67CD6 /* Webcam.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		B6F86B7E1B98225800045DA4 /* DDExpandableButton */ = {
+			isa = PBXGroup;
+			children = (
+				B6F86B7F1B9825BD00045DA4 /* BridgingHeader.h */,
+				B6F86B7B1B98225000045DA4 /* DDExpandableButton.h */,
+				B6F86B7C1B98225000045DA4 /* DDExpandableButton.m */,
+			);
+			name = DDExpandableButton;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,6 +371,7 @@
 				B651831E1B7DC3AF00F67CD6 /* Earthquake.swift in Sources */,
 				B66706461B7C7BA0007163E2 /* QuakeMapperClient.swift in Sources */,
 				B65183201B7DC3BF00F67CD6 /* Webcam.swift in Sources */,
+				B6F86B7D1B98225000045DA4 /* DDExpandableButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +453,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = QuakeMapper/BridgingHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -474,6 +491,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				"SWIFT_OBJC_BRIDGING_HEADER[sdk=*]" = QuakeMapper/BridgingHeader.h;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -489,6 +507,7 @@
 				INFOPLIST_FILE = QuakeMapper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = QuakeMapper/BridgingHeader.h;
 			};
 			name = Debug;
 		};
@@ -503,6 +522,7 @@
 				INFOPLIST_FILE = QuakeMapper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = QuakeMapper/BridgingHeader.h;
 			};
 			name = Release;
 		};

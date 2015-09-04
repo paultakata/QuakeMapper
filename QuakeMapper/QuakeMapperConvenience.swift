@@ -144,7 +144,10 @@ extension QuakeMapperClient {
                     
                                 for webcam in webcamsArray {
                                     
-                                    Webcam(dictionary: webcam, quake: earthquake, context: self.sharedContext)
+                                    dispatch_async(dispatch_get_main_queue(), {
+                                        
+                                        Webcam(dictionary: webcam, quake: earthquake, context: self.sharedContext)
+                                    })
                                 }
                                 
                                 completion(success: true, error: nil)
@@ -179,9 +182,12 @@ extension QuakeMapperClient {
                     NSFileManager.defaultManager().createFileAtPath(fileURL.path!, contents: result, attributes: nil)
                     
                     //...and update the filePath.
-                    webcam.previewImageFilePath = fileName
-                    
-                    completion(success: true, error: nil)
+                    dispatch_async(dispatch_get_main_queue(), {
+                        
+                        webcam.previewImageFilePath = fileName
+                        
+                        completion(success: true, error: nil)
+                    })
                 }
             }
         })
@@ -222,9 +228,12 @@ extension QuakeMapperClient {
                     NSFileManager.defaultManager().createFileAtPath(fileURL.path!, contents: result, attributes: nil)
                     
                     //...and update the filePath.
-                    webcam.iconImageFilePath = fileName
-                    
-                    completion(success: true, error: nil)
+                    dispatch_async(dispatch_get_main_queue(), {
+                        
+                        webcam.iconImageFilePath = fileName
+                        
+                        completion(success: true, error: nil)
+                    })
                 }
             }
         })
@@ -238,8 +247,9 @@ extension QuakeMapperClient {
         //quakes already exist in Core Data, and only add the new ones.
         //This is to minimise the number of fetches to Core Data.
         
-        //Create set of new earthquake IDs.
-        var newQuakeIDsSet: Set<String> = []
+        //Create sets to hold new earthquake IDs.
+        var newQuakeIDsSet:      Set<String> = []
+        var existingQuakeIDsSet: Set<String> = []
         
         for quake in quakeArray {
             
@@ -251,28 +261,29 @@ extension QuakeMapperClient {
         fetchRequest.predicate = NSPredicate(format: "id IN %@", newQuakeIDsSet)
         
         //Fetch the results array...
-        let error: NSErrorPointer = nil
-        let earthquakesMatchingIDs = sharedContext.executeFetchRequest(fetchRequest, error: error) as! [Earthquake]
-        
-        //...and use it to populate a set with the earthquake IDs.
-        var existingQuakeIDsSet: Set<String> = []
-        
-        for quake in earthquakesMatchingIDs {
+        dispatch_async(dispatch_get_main_queue(), {
             
-            existingQuakeIDsSet.insert(quake.id)
-        }
-        
-        //Get subset containing IDs which don't already exist in Core Data...
-        let setToBeAdded = newQuakeIDsSet.subtract(existingQuakeIDsSet)
-        
-        //...then iterate through the new quakes, adding the ones which
-        //don't already exist.
-        for quake in quakeArray {
+            let error: NSErrorPointer = nil
+            let earthquakesMatchingIDs = self.sharedContext.executeFetchRequest(fetchRequest, error: error) as! [Earthquake]
             
-            if setToBeAdded.contains(quake[USGSJSONResponseKeys.ID] as! String) {
+            //...and use it to populate a set with the earthquake IDs.
+            for quake in earthquakesMatchingIDs {
                 
-                Earthquake(dictionary: quake, context: sharedContext)
+                existingQuakeIDsSet.insert(quake.id)
             }
-        }
+            
+            //Get subset containing IDs which don't already exist in Core Data...
+            let setToBeAdded = newQuakeIDsSet.subtract(existingQuakeIDsSet)
+            
+            //...then iterate through the new quakes, adding the ones which
+            //don't already exist.
+            for quake in quakeArray {
+                
+                if setToBeAdded.contains(quake[USGSJSONResponseKeys.ID] as! String) {
+                    
+                    Earthquake(dictionary: quake, context: self.sharedContext)
+                }
+            }
+        })
     }
 }

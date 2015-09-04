@@ -20,9 +20,10 @@ class MapViewController: UIViewController {
     @IBOutlet weak var dateSlider:                 UISlider!
     @IBOutlet weak var dateLabel:                  UILabel!
     @IBOutlet weak var upToDateLabel:              UILabel!
-    @IBOutlet weak var segmentedControl:           UISegmentedControl!
     @IBOutlet weak var activityIndicator:          UIActivityIndicatorView!
     @IBOutlet weak var returnToPreviousZoomButton: UIButton!
+    
+    var expandableButton:                          DDExpandableButton!
     
     //MARK: Temporary storage properties
     
@@ -30,21 +31,18 @@ class MapViewController: UIViewController {
         
         didSet {
             
-            //Get subsets of the quake data on a background thread.
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+            //Get subsets of the quake data.
+            self.getQuakeSubsetsWithCompletion({
+                success in
                 
-                self.getQuakeSubsetsWithCompletion({
-                    success in
+                //Once complete, call expandableButtonValueChanged() to update the correct annotations
+                //based on whatever the user has selected. Also re-enable UI controls.
+                dispatch_async(dispatch_get_main_queue(), {
                     
-                    //Once complete, call segmentedControlValueChanged() to update the correct annotations
-                    //based on whatever the user has selected. Also re-enable UI controls.
-                    dispatch_async(dispatch_get_main_queue(), {
-                        
-                        self.dateSlider.enabled = true
-                        self.segmentedControl.enabled = true
-                        self.activityIndicator.stopAnimating()
-                        self.segmentedControlValueChanged(self.segmentedControl)
-                    })
+                    self.dateSlider.enabled = true
+                    self.expandableButton.enabled = true
+                    self.activityIndicator.stopAnimating()
+                    self.expandableButtonValueChanged(self.expandableButton)
                 })
             })
         }
@@ -125,7 +123,7 @@ class MapViewController: UIViewController {
         //Reset UI.
         UIView.animateWithDuration(0.5, animations: {
             
-            self.segmentedControl.alpha = 1.0
+            self.expandableButton.alpha = 1.0
             self.returnToPreviousZoomButton.alpha = 0.0
         })
         
@@ -137,7 +135,7 @@ class MapViewController: UIViewController {
         
         //Reset map annotations.
         previousSliderValue = -1                       //These two lines reset the annotations to display
-        segmentedControlValueChanged(segmentedControl) //what the user was last looking at.
+        expandableButtonValueChanged(expandableButton) //what the user was last looking at.
     }
     
     @IBAction func refreshBarButtonPressed(sender: UIBarButtonItem) {
@@ -145,11 +143,64 @@ class MapViewController: UIViewController {
         getAllQuakes(sender)
     }
     
-    @IBAction func segmentedControlValueChanged(sender: UISegmentedControl) {
+    //MARK: - Helper functions
+    
+    func logInTwitter() {
         
-        switch sender.selectedSegmentIndex {
+        Twitter.sharedInstance().logInGuestWithCompletion {
+            session, error in
             
-        case 0: //Show All
+            if let session = session,
+                accessToken = session.accessToken {
+                    
+                    //Store the bearer token for future API calls.
+                    QuakeMapperClient.sharedInstance.twitterBearerToken = accessToken
+            }
+        }
+    }
+    
+    func prepareUI() {
+        
+        dateLabel.alpha = 0.0
+        dateLabel.layer.cornerRadius = 5
+        dateLabel.layer.masksToBounds = true
+        
+        returnToPreviousZoomButton.alpha = 0.0
+        returnToPreviousZoomButton.layer.cornerRadius = 5
+        returnToPreviousZoomButton.layer.masksToBounds = true
+        
+        upToDateLabel.alpha = 0.0
+        dateSlider.alpha = 0.0
+        
+        //Rotate slider 90 degs counter-clockwise.
+        dateSlider.transform = CGAffineTransformMakeRotation(CGFloat(-M_PI_2))
+        dateSlider.setThumbImage(UIImage(named: "EarthquakeRotated"), forState: .Normal)
+        
+        //Get point at middle of bottom of view.
+        let x = self.view.frame.width / 2 - 41.807 //Magic number :( Half of the button's width.
+        let y = self.view.frame.height - self.navigationController!.bottomLayoutGuide.length - 38 //And another :( Padding from bottom layout guide.
+        
+        //Set up expandable button.
+        expandableButton = DDExpandableButton(point: CGPointMake(x, y), leftTitle: "View", buttons: ["All", "Recent", "By Day"])
+        self.view.addSubview(expandableButton)
+        
+        expandableButton.addTarget(self,
+            action: "expandableButtonValueChanged:",
+            forControlEvents: .ValueChanged)
+        expandableButton.innerBorderWidth = 0
+        expandableButton.horizontalPadding = 5
+        expandableButton.unSelectedLabelFont = UIFont.systemFontOfSize(expandableButton.labelFont.pointSize)
+        expandableButton.borderColor = UIColor.whiteColor()
+        expandableButton.textColor = UIColor(white: 0.9, alpha: 1.0)
+        expandableButton.updateDisplay()
+        expandableButton.selectedItem = 0
+    }
+    
+    func expandableButtonValueChanged(sender: DDExpandableButton) {
+        
+        switch sender.selectedItem {
+            
+        case 0: //View All
             
             //Animate UI changes.
             if self.dateLabel.alpha != 0.0 {
@@ -170,7 +221,7 @@ class MapViewController: UIViewController {
             //to run if user switches from View By Day to another setting and back again.
             previousSliderValue = -1
             
-        case 1: //Show Recent
+        case 1: //View Recent
             
             //Animate UI changes.
             if self.dateLabel.alpha != 0.0 {
@@ -208,40 +259,6 @@ class MapViewController: UIViewController {
         default:
             break
         }
-    }
-    
-    //MARK: - Helper functions
-    
-    func logInTwitter() {
-        
-        Twitter.sharedInstance().logInGuestWithCompletion {
-            session, error in
-            
-            if let session = session,
-                accessToken = session.accessToken {
-                    
-                    //Store the bearer token for future API calls.
-                    QuakeMapperClient.sharedInstance.twitterBearerToken = accessToken
-            }
-        }
-    }
-    
-    func prepareUI() {
-        
-        dateLabel.alpha = 0.0
-        dateLabel.layer.cornerRadius = 5
-        dateLabel.layer.masksToBounds = true
-        
-        returnToPreviousZoomButton.alpha = 0.0
-        returnToPreviousZoomButton.layer.cornerRadius = 5
-        returnToPreviousZoomButton.layer.masksToBounds = true
-        
-        upToDateLabel.alpha = 0.0
-        dateSlider.alpha = 0.0
-        
-        //Rotate slider 90 degs counter-clockwise.
-        dateSlider.transform = CGAffineTransformMakeRotation(CGFloat(-M_PI_2))
-        dateSlider.setThumbImage(UIImage(named: "EarthquakeRotated"), forState: .Normal)
     }
     
     func prepareDateFormatter() {
@@ -383,7 +400,7 @@ class MapViewController: UIViewController {
         if shouldDownloadQuakeData {
             
             //Disable UI controls and enable activity indicator during download.
-            segmentedControl.enabled = false
+            expandableButton.enabled = false
             dateSlider.enabled = false
             activityIndicator.startAnimating()
             
@@ -448,29 +465,29 @@ class MapViewController: UIViewController {
             if success {
                 
                 //Try to get the icon images for the newly downloaded webcams.
-                let newWebcams = self.fetchWebcamsForEarthquake(earthquake)
-                
-                for webcam in newWebcams {
-                    
-                    QuakeMapperClient.sharedInstance.getIconImageForWebcam(webcam, withCompletion: {
-                        success, error in
-                        
-                        //If successful, show the new webcam annotation.
-                        dispatch_async(dispatch_get_main_queue(), {
-                            
-                            self.mapView.addAnnotation(webcam)
-                            CoreDataStackManager.sharedInstance.saveContext()
-                        })
-                    })
-                }
-                
-                //Save to Core Data.
                 dispatch_async(dispatch_get_main_queue(), {
-                
+                    
+                    let newWebcams = self.fetchWebcamsForEarthquake(earthquake)
+                    
+                    for webcam in newWebcams {
+                        
+                        QuakeMapperClient.sharedInstance.getIconImageForWebcam(webcam, withCompletion: {
+                            success, error in
+                            
+                            //If successful, show the new webcam annotation.
+                            dispatch_async(dispatch_get_main_queue(), {
+                                
+                                self.mapView.addAnnotation(webcam)
+                                CoreDataStackManager.sharedInstance.saveContext()
+                            })
+                        })
+                    }
+                    
+                    //Save to Core Data.
                     CoreDataStackManager.sharedInstance.saveContext()
+                    
+                    completion(success: true)
                 })
-                
-                completion(success: true)
             } else {
                 
                 completion(success: false)
@@ -729,7 +746,7 @@ extension MapViewController: MKMapViewDelegate {
                 //STEP 3: Update UI.
                 UIView.animateWithDuration(0.5, animations: {
                     
-                    self.segmentedControl.alpha = 0.0
+                    self.expandableButton.alpha = 0.0
                     self.dateSlider.alpha = 0.0
                     self.dateLabel.alpha = 0.0
                     self.returnToPreviousZoomButton.alpha = 1.0
@@ -773,7 +790,7 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(mapView: MKMapView!, didAddAnnotationViews views: [AnyObject]!) {
         
         //Allow drop animation on Show All and Show Recent only.
-        if segmentedControl.selectedSegmentIndex != 2 {
+        if expandableButton.selectedItem != 2 {
             
             //Variable to allow delayed drops on each annotation view.
             var i = -1

@@ -116,7 +116,10 @@ class TweetTableViewController: UIViewController {
                     //...and store them in Core Data Tweet objects.
                     for tweet in tweetArray {
                         
-                        Tweet(tweet: tweet, quake: earthquake, context: self.sharedContext)
+                        dispatch_async(dispatch_get_main_queue(), {
+                        
+                            Tweet(tweet: tweet, quake: earthquake, context: self.sharedContext)
+                        })
                     }
                     
                     //Save the context and update the UI on the main thread.

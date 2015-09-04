@@ -30,22 +30,6 @@
                                     <action selector="dateSliderValueChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="10h-wE-GtI"/>
                                 </connections>
                             </slider>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="tPm-Kk-YGG">
-                                <rect key="frame" x="325" y="515" width="259" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="259" id="Jtc-PU-cSh"/>
-                                    <constraint firstAttribute="height" constant="28" id="dVD-7H-qXT"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="Show All"/>
-                                    <segment title="Show Recent"/>
-                                    <segment title="View by Day"/>
-                                </segments>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <action selector="segmentedControlValueChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="Ktj-lH-1vE"/>
-                                </connections>
-                            </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9wd-el-Lyo">
                                 <rect key="frame" x="215" y="72" width="170" height="21"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -91,14 +75,12 @@
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="Eew-vY-YAO" secondAttribute="centerX" id="2K8-pi-VTW"/>
                             <constraint firstItem="Gt5-E1-OvS" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="7DM-DZ-3zH"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="tPm-Kk-YGG" secondAttribute="bottom" constant="8" id="7lk-nG-Hes"/>
                             <constraint firstAttribute="centerY" secondItem="Eew-vY-YAO" secondAttribute="centerY" id="EG3-rl-Dxu"/>
                             <constraint firstItem="9wd-el-Lyo" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="NSr-rY-PbI"/>
-                            <constraint firstItem="tPm-Kk-YGG" firstAttribute="top" secondItem="g06-3C-5PN" secondAttribute="bottom" constant="108" id="OVw-31-qva"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="g06-3C-5PN" secondAttribute="bottom" constant="144" id="OX3-uG-IVm"/>
                             <constraint firstAttribute="centerX" secondItem="9wd-el-Lyo" secondAttribute="centerX" id="adV-c3-JC0"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="a6W-mF-SSP" secondAttribute="bottom" id="bl4-Sa-dER"/>
                             <constraint firstItem="a6W-mF-SSP" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" id="c4l-PM-znW"/>
-                            <constraint firstItem="tPm-Kk-YGG" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="dm3-u0-Kwo"/>
                             <constraint firstItem="Gt5-E1-OvS" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="iKB-m7-YlB"/>
                             <constraint firstItem="g06-3C-5PN" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" constant="70" id="lcF-iK-qO4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="a6W-mF-SSP" secondAttribute="trailing" constant="-16" id="rh0-6d-igh"/>
@@ -121,7 +103,6 @@
                         <outlet property="mapView" destination="a6W-mF-SSP" id="F1k-h3-f44"/>
                         <outlet property="refreshBarButton" destination="AEF-v7-RgL" id="yKZ-DX-4Yv"/>
                         <outlet property="returnToPreviousZoomButton" destination="Gt5-E1-OvS" id="YMH-Bf-SDY"/>
-                        <outlet property="segmentedControl" destination="tPm-Kk-YGG" id="f63-2L-1w5"/>
                         <outlet property="upToDateLabel" destination="jJa-sS-JDN" id="V0m-gh-gS6"/>
                     </connections>
                 </viewController>
