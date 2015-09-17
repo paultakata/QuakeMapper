@@ -104,7 +104,7 @@ class MapViewController: UIViewController {
             
             //Retrieve dictionary key from array, and new annotations from dictionary.
             let key = quakesByDaySortedDayArray[sliderValueAsInt]
-            mapView.addAnnotations(quakesByDay[key])
+            mapView.addAnnotations(quakesByDay[key]!)
             
             //Update date label with relevant date.
             let dayString = dateFormatter.stringFromDate(key)
@@ -215,7 +215,7 @@ class MapViewController: UIViewController {
             
             //Remove old annotations and add all quakes.
             mapView.removeAnnotations(mapView.annotations)
-            mapView.addAnnotations(allQuakes)
+            mapView.addAnnotations(allQuakes!)
             
             //Set previousSliderValue to an impossible value, this will force dateSliderValueChanged()
             //to run if user switches from View By Day to another setting and back again.
@@ -303,7 +303,7 @@ class MapViewController: UIViewController {
                 let dayEarthquakeOccured = dateAtBeginningOfDayForDate(quake.time, withCalendar: calendar)
                 
                 //If the dictionary already has that date as a key...
-                if let quakesOnThisDay = quakesByDay[dayEarthquakeOccured] {
+                if let _ = quakesByDay[dayEarthquakeOccured] {
                     
                     //...append the new quake to it...
                     quakesByDay[dayEarthquakeOccured]!.append(quake)
@@ -318,7 +318,7 @@ class MapViewController: UIViewController {
             }
             
             //Sort the array.
-            quakesByDaySortedDayArray = sorted(unsortedArray, {
+            quakesByDaySortedDayArray = unsortedArray.sort({
                 date1, date2 in
                 
                 let compare = date1.compare(date2)
@@ -343,7 +343,7 @@ class MapViewController: UIViewController {
     func dateAtBeginningOfDayForDate(date: NSDate, withCalendar calendar: NSCalendar) -> NSDate {
         
         //Get date components from NSDate input.
-        let dateComponents = calendar.components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay, fromDate: date)
+        let dateComponents = calendar.components([.Year, .Month, .Day], fromDate: date)
     
         //Set the hour, minutes and seconds to 0 to return midnight on the day in the user's calendar and timezone.
         dateComponents.hour = 0
@@ -383,7 +383,7 @@ class MapViewController: UIViewController {
                             
                             UIView.animateWithDuration(0.5,
                                 delay: 1.0,
-                                options: nil,
+                                options: [],
                                 animations: { self.upToDateLabel.alpha = 0.0 },
                                 completion: nil)
                     })
@@ -423,7 +423,13 @@ class MapViewController: UIViewController {
         //Create and execute the fetch request.
         let error: NSErrorPointer = nil
         let fetchRequest = NSFetchRequest(entityName: "Earthquake")
-        let results = sharedContext.executeFetchRequest(fetchRequest, error: error)
+        let results: [AnyObject]?
+        do {
+            results = try sharedContext.executeFetchRequest(fetchRequest)
+        } catch let error1 as NSError {
+            error.memory = error1
+            results = nil
+        }
         
         //Check for errors.
         if error != nil {
@@ -443,7 +449,13 @@ class MapViewController: UIViewController {
         let fetchRequest = NSFetchRequest(entityName: "Webcam")
         fetchRequest.predicate = NSPredicate(format: "earthquake == %@", earthquake)
         
-        let results = sharedContext.executeFetchRequest(fetchRequest, error: error)
+        let results: [AnyObject]?
+        do {
+            results = try sharedContext.executeFetchRequest(fetchRequest)
+        } catch let error1 as NSError {
+            error.memory = error1
+            results = nil
+        }
         
         //Check for errors.
         if error != nil {
@@ -611,7 +623,7 @@ class MapViewController: UIViewController {
         view.image = imageForAnnotation(annotation)
         
         //Get a Twitter button and enable/disable it depending on the age of the earthquake.
-        let leftButton = UIButton.buttonWithType(.Custom) as! UIButton
+        let leftButton = UIButton(type: .Custom)
         leftButton.frame = CGRectMake(0, 0, 20, 20)
         leftButton.setImage(UIImage(named: "TwitterBird"), forState: .Normal)
         leftButton.enabled = annotation.tweetsAvailable
@@ -634,13 +646,13 @@ class MapViewController: UIViewController {
 
 extension MapViewController: MKMapViewDelegate {
     
-    func mapView(mapView: MKMapView!, regionDidChangeAnimated animated: Bool) {
+    func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
         //Save the map region as the user moves it around.
         saveMapRegion()
     }
     
-    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
         if let annotation = annotation as? Earthquake { //Views for Earthquake annotations.
             
@@ -664,7 +676,7 @@ extension MapViewController: MKMapViewDelegate {
                 //so are not included in the configureView(forAnnotation:) method.
                 view.canShowCallout = true
                 
-                let rightButton = UIButton.buttonWithType(.Custom) as! UIButton
+                let rightButton = UIButton(type: .Custom)
                 rightButton.frame = CGRectMake(0, 0, 20, 20)
                 rightButton.setImage(UIImage(named: "Camera"), forState: .Normal)
                 rightButton.tag = 1
@@ -694,7 +706,7 @@ extension MapViewController: MKMapViewDelegate {
         return nil
     }
     
-    func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         
         if view.reuseIdentifier == "Earthquake" { //This section for Earthquake annotations.
             
@@ -716,7 +728,7 @@ extension MapViewController: MKMapViewDelegate {
                 if var annotations = mapView.annotations as? [Earthquake] {
                     
                     //...find the selected one...
-                    if let index = find(annotations, earthquake) {
+                    if let index = annotations.indexOf(earthquake) {
                         
                         //...remove it from the array and then remove
                         //the remaining annotations from the map.
@@ -768,7 +780,7 @@ extension MapViewController: MKMapViewDelegate {
         }
     }
     
-    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
         //Get earthquake tapped on...
         let earthquake = view.annotation as! Earthquake
@@ -787,7 +799,7 @@ extension MapViewController: MKMapViewDelegate {
         presentViewController(nextVC, animated: true, completion: nil)
     }
     
-    func mapView(mapView: MKMapView!, didAddAnnotationViews views: [AnyObject]!) {
+    func mapView(mapView: MKMapView, didAddAnnotationViews views: [MKAnnotationView]) {
         
         //Allow drop animation on Show All and Show Recent only.
         if expandableButton.selectedItem != 2 {
@@ -804,9 +816,9 @@ extension MapViewController: MKMapViewDelegate {
                     continue
                 }
                 
-                if let annotationView = view as? MKAnnotationView {
+                //if let annotationView = view {
                     
-                    let point = MKMapPointForCoordinate(annotationView.annotation.coordinate)
+                    let point = MKMapPointForCoordinate(view.annotation!.coordinate)
                     
                     //Don't animate drop if annotation view is offscreen.
                     if !MKMapRectContainsPoint(mapView.visibleMapRect, point) {
@@ -815,11 +827,11 @@ extension MapViewController: MKMapViewDelegate {
                     }
                     
                     //Get final frame for annotation view...
-                    let endFrame = annotationView.frame
+                    let endFrame = view.frame
                     
                     //..set start frame and alpha...
-                    annotationView.frame = CGRectMake(annotationView.frame.origin.x, annotationView.frame.origin.y - 120, annotationView.frame.size.width, annotationView.frame.size.height)
-                    annotationView.alpha = 0.0
+                    view.frame = CGRectMake(view.frame.origin.x, view.frame.origin.y - 120, view.frame.size.width, view.frame.size.height)
+                    view.alpha = 0.0
                     
                     //...make a delay...
                     let delay = 0.01 * Double(i)
@@ -829,11 +841,11 @@ extension MapViewController: MKMapViewDelegate {
                         delay: delay,
                         options: .CurveEaseOut,
                         animations: {
-                            annotationView.frame = endFrame
-                            annotationView.alpha = 1.0
+                            view.frame = endFrame
+                            view.alpha = 1.0
                         },
                         completion: nil)
-                }
+                //} TODO:
             }
         } else {
             
@@ -846,9 +858,9 @@ extension MapViewController: MKMapViewDelegate {
                     continue
                 }
                 
-                if let annotationView = view as? MKAnnotationView {
+                //if let annotationView = view as? MKAnnotationView {
                     
-                    let point = MKMapPointForCoordinate(annotationView.annotation.coordinate)
+                    let point = MKMapPointForCoordinate(view.annotation!.coordinate)
                     
                     //Don't animate if annotation view is offscreen.
                     if !MKMapRectContainsPoint(mapView.visibleMapRect, point) {
@@ -857,34 +869,34 @@ extension MapViewController: MKMapViewDelegate {
                     }
                     
                     //Set start alpha.
-                    annotationView.alpha = 0.0
+                    view.alpha = 0.0
                     
                     //Animate it.
                     UIView.animateWithDuration(0.1,
                         delay: 0,
                         options: .CurveEaseIn,
                         animations: {
-                            annotationView.alpha = 1.0
+                            view.alpha = 1.0
                         },
                         completion: nil)
-                }
+               //}
             }
         }
     }
     
     //The following 3 functions are used to show and hide the network activity indicator as the map loads.
     
-    func mapViewWillStartLoadingMap(mapView: MKMapView!) {
+    func mapViewWillStartLoadingMap(mapView: MKMapView) {
         
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
     }
     
-    func mapViewDidFinishLoadingMap(mapView: MKMapView!) {
+    func mapViewDidFinishLoadingMap(mapView: MKMapView) {
         
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
     }
     
-    func mapViewDidFailLoadingMap(mapView: MKMapView!, withError error: NSError!) {
+    func mapViewDidFailLoadingMap(mapView: MKMapView, withError error: NSError) {
         
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
     }

@@ -17,7 +17,7 @@ class Webcam: NSManagedObject, MKAnnotation {
     //MARK: - Properties
     
     @NSManaged var webcamID:             String
-    @NSManaged var title:                String
+    @NSManaged var title:                String?
     @NSManaged var url:                  String
     @NSManaged var urlMobile:            String
     @NSManaged var latitude:             Double
@@ -53,7 +53,7 @@ class Webcam: NSManagedObject, MKAnnotation {
         //Return image from documents directory if it exists.
         if let filePath = previewImageFilePath {
             
-            let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
+            let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
             let pathArray = [dirPath, filePath]
             let fileURL = NSURL.fileURLWithPathComponents(pathArray)!
             
@@ -68,7 +68,7 @@ class Webcam: NSManagedObject, MKAnnotation {
         //Return image from documents directory if it exists.
         if let filePath = iconImageFilePath {
             
-            let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
+            let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
             let pathArray = [dirPath, filePath]
             let fileURL = NSURL.fileURLWithPathComponents(pathArray)!
             
@@ -94,7 +94,7 @@ class Webcam: NSManagedObject, MKAnnotation {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
         
         self.webcamID  = dictionary[QuakeMapperClient.WebcamsTravelJSONResponseKeys.WebcamID]  as! String
-        self.title     = dictionary[QuakeMapperClient.WebcamsTravelJSONResponseKeys.Title]     as! String
+        self.title     = dictionary[QuakeMapperClient.WebcamsTravelJSONResponseKeys.Title]     as? String
         self.url       = dictionary[QuakeMapperClient.WebcamsTravelJSONResponseKeys.URL]       as! String
         self.urlMobile = dictionary[QuakeMapperClient.WebcamsTravelJSONResponseKeys.URLMobile] as! String
         self.latitude  = dictionary[QuakeMapperClient.WebcamsTravelJSONResponseKeys.Latitude]!.doubleValue
@@ -131,21 +131,27 @@ class Webcam: NSManagedObject, MKAnnotation {
         //Delete the webcam preview image when the Webcam is deleted.
         if let fileName = previewImageFilePath {
             
-            let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
+            let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
             let pathArray = [dirPath, fileName]
             let fileURL = NSURL.fileURLWithPathComponents(pathArray)!
             
-            NSFileManager.defaultManager().removeItemAtURL(fileURL, error: nil)
+            do {
+                try NSFileManager.defaultManager().removeItemAtURL(fileURL)
+            } catch _ {
+            }
         }
         
         //Delete the webcam icon image when the Webcam is deleted.
         if let fileName = iconImageFilePath {
             
-            let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
+            let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
             let pathArray = [dirPath, fileName]
             let fileURL = NSURL.fileURLWithPathComponents(pathArray)!
             
-            NSFileManager.defaultManager().removeItemAtURL(fileURL, error: nil)
+            do {
+                try NSFileManager.defaultManager().removeItemAtURL(fileURL)
+            } catch _ {
+            }
         }
     }
 }

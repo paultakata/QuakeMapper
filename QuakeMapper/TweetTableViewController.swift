@@ -148,7 +148,11 @@ class TweetTableViewController: UIViewController {
         
         //Perform fetch, inform the user if something goes wrong.
         let error: NSErrorPointer = nil
-        fetchedResultsController.performFetch(error)
+        do {
+            try fetchedResultsController.performFetch()
+        } catch let error1 as NSError {
+            error.memory = error1
+        }
         
         if error != nil {
             
@@ -238,7 +242,7 @@ extension TweetTableViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if let sectionInfo = fetchedResultsController.sections?[section] as? NSFetchedResultsSectionInfo {
+        if let sectionInfo = fetchedResultsController.sections?[section] {
         
             return sectionInfo.numberOfObjects
         }
@@ -314,9 +318,6 @@ extension TweetTableViewController: NSFetchedResultsControllerDelegate {
         case .Move:
             tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
             tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
-            
-        default:
-            return
         }
     }
     

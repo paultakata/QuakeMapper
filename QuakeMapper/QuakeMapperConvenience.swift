@@ -64,11 +64,11 @@ extension QuakeMapperClient {
                 
                 //...otherwise create a png image and fileURL...
                 let fileName = quake.id + ".png"
-                let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
+                let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
                 let pathArray = [dirPath, fileName]
                 let fileURL = NSURL.fileURLWithPathComponents(pathArray)!
                 
-                let imageData = UIImagePNGRepresentation(snapshot.image)
+                let imageData = UIImagePNGRepresentation(snapshot!.image)
                 
                 //...save it, update the earthquake and call the completion handler.
                 NSFileManager.defaultManager().createFileAtPath(fileURL.path!, contents: imageData, attributes: nil)
@@ -174,8 +174,8 @@ extension QuakeMapperClient {
                 //If we get a result, save it to the documents directory...
                 if let result = result {
                     
-                    let fileName = imageURLString.lastPathComponent
-                    let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
+                    let fileName = NSURL.fileURLWithPath(imageURLString).lastPathComponent!
+                    let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
                     let pathArray = [dirPath, fileName]
                     let fileURL = NSURL.fileURLWithPathComponents(pathArray)!
                     
@@ -211,7 +211,7 @@ extension QuakeMapperClient {
                 //If we get a result, save it to the documents directory...
                 if let result = result {
                     
-                    var fileName = "icon" + iconURLString.lastPathComponent
+                    var fileName = "icon" + NSURL.fileURLWithPath(iconURLString).lastPathComponent!
                     
                     //The following adds "@2x" to the file name.
                     //This makes UIImage display it at a more useful scaling.
@@ -221,7 +221,7 @@ extension QuakeMapperClient {
                         fileName = fileNameWithoutSuffix + "@2x.jpg"
                     }
                     
-                    let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
+                    let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
                     let pathArray = [dirPath, fileName]
                     let fileURL = NSURL.fileURLWithPathComponents(pathArray)!
                     
@@ -263,8 +263,8 @@ extension QuakeMapperClient {
         //Fetch the results array...
         dispatch_async(dispatch_get_main_queue(), {
             
-            let error: NSErrorPointer = nil
-            let earthquakesMatchingIDs = self.sharedContext.executeFetchRequest(fetchRequest, error: error) as! [Earthquake]
+            //let error: NSErrorPointer = nil TODO:
+            let earthquakesMatchingIDs = (try! self.sharedContext.executeFetchRequest(fetchRequest)) as! [Earthquake]
             
             //...and use it to populate a set with the earthquake IDs.
             for quake in earthquakesMatchingIDs {

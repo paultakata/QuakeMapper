@@ -219,7 +219,11 @@ class WebcamCollectionViewController: UIViewController {
         
         //Perform fetch, alert user if something goes wrong.
         let error: NSErrorPointer = nil
-        fetchedResultsController.performFetch(error)
+        do {
+            try fetchedResultsController.performFetch()
+        } catch let error1 as NSError {
+            error.memory = error1
+        }
         
         if error != nil {
             
@@ -251,9 +255,9 @@ extension WebcamCollectionViewController: UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        let sectionInfo = fetchedResultsController.sections?[section] as! NSFetchedResultsSectionInfo
+        let sectionInfo = fetchedResultsController.sections?[section]
         
-        return sectionInfo.numberOfObjects
+        return sectionInfo!.numberOfObjects
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {

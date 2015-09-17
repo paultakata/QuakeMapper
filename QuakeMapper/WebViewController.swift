@@ -109,7 +109,7 @@ extension WebViewController: UIWebViewDelegate {
         checkBackAndForwardButtons()
     }
     
-    func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
+    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
         
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         checkBackAndForwardButtons()

@@ -42,7 +42,7 @@ class Earthquake: NSManagedObject, MKAnnotation {
         return safeCoordinate!
     }
     
-    var title: String {
+    var title: String? {
         
         //Create date formatter with suitable properties.
         let dateFormatter = NSDateFormatter()
@@ -56,7 +56,7 @@ class Earthquake: NSManagedObject, MKAnnotation {
         return "Magnitude \(magnitude)\n\(timeString)"
     }
     
-    var subtitle: String {
+    var subtitle: String? {
         
         return placeText
     }
@@ -66,7 +66,7 @@ class Earthquake: NSManagedObject, MKAnnotation {
         //If the filePath exists, return the image.
         if let filePath = mapThumbnailImageFilePath {
             
-            let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
+            let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
             let pathArray = [dirPath, filePath]
             let fileURL = NSURL.fileURLWithPathComponents(pathArray)!
             
@@ -145,11 +145,14 @@ class Earthquake: NSManagedObject, MKAnnotation {
         //Delete the map thumbnail image when the earthquake is deleted.
         if let fileName = mapThumbnailImageFilePath {
             
-            let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
+            let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
             let pathArray = [dirPath, fileName]
             let fileURL = NSURL.fileURLWithPathComponents(pathArray)!
             
-            NSFileManager.defaultManager().removeItemAtURL(fileURL, error: nil)
+            do {
+                try NSFileManager.defaultManager().removeItemAtURL(fileURL)
+            } catch _ {
+            }
         }
     }
 }

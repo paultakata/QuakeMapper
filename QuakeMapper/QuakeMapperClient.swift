@@ -67,7 +67,7 @@ class QuakeMapperClient {
                     completionHandler(result: nil, error: newError)
                 } else {
                     
-                    QuakeMapperClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
+                    QuakeMapperClient.parseJSONWithCompletionHandler(data!, completionHandler: completionHandler)
                 }
             }
             
@@ -80,7 +80,7 @@ class QuakeMapperClient {
         completionHandler: (result: NSData?, error: NSError?) -> Void) {
             
             //Create request with urlString.
-            var request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
+            let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
             
             //Make the request.
             let task = session.dataTaskWithRequest(request) {
@@ -122,7 +122,12 @@ class QuakeMapperClient {
             //Add appropriate HTTP header field keys and HTTP body.
             request = website.addHTTPHeaderFieldKeysForPOSTRequest(request)
             
-            request.HTTPBody = NSJSONSerialization.dataWithJSONObject(jsonBody, options: nil, error: &jsonError)
+            do {
+                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(jsonBody, options: [])
+            } catch let error as NSError {
+                jsonError = error
+                request.HTTPBody = nil
+            }
             
             //Make the request.
             let task = session.dataTaskWithRequest(request) {
@@ -135,7 +140,7 @@ class QuakeMapperClient {
                     completionHandler(result: nil, error: newError)
                 } else {
                     
-                    QuakeMapperClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
+                    QuakeMapperClient.parseJSONWithCompletionHandler(data!, completionHandler: completionHandler)
                 }
             }
             
@@ -160,7 +165,12 @@ class QuakeMapperClient {
             
             //Add appropriate HTTP header field keys and HTTP body.
             request = website.addHTTPHeaderFieldKeysForPUTRequest(request)
-            request.HTTPBody = NSJSONSerialization.dataWithJSONObject(jsonBody, options: nil, error: &jsonError)
+            do {
+                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(jsonBody, options: [])
+            } catch let error as NSError {
+                jsonError = error
+                request.HTTPBody = nil
+            }
             
             //Make the request.
             let task = session.dataTaskWithRequest(request) {
@@ -173,7 +183,7 @@ class QuakeMapperClient {
                     completionHandler(result: nil, error: newError)
                 } else {
                     
-                    QuakeMapperClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
+                    QuakeMapperClient.parseJSONWithCompletionHandler(data!, completionHandler: completionHandler)
                 }
             }
             
@@ -187,7 +197,7 @@ class QuakeMapperClient {
         completionHandler: (error: NSError?) -> Void) {
             
             //Create HEAD request and task.
-            var request = NSMutableURLRequest(URL: url)
+            let request = NSMutableURLRequest(URL: url)
             request.HTTPMethod = "HEAD"
             
             let task = session.dataTaskWithRequest(request) {
@@ -237,7 +247,7 @@ class QuakeMapperClient {
                     completionHandler(result: nil, error: newError)
                 } else {
                     
-                    QuakeMapperClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
+                    QuakeMapperClient.parseJSONWithCompletionHandler(data!, completionHandler: completionHandler)
                 }
             }
             
@@ -276,13 +286,13 @@ class QuakeMapperClient {
             urlVars += [key + "=" + "\(replaceSpaceValue)"]
         }
         
-        return (!urlVars.isEmpty ? "?" : "") + join("&", urlVars)
+        return (!urlVars.isEmpty ? "?" : "") + urlVars.joinWithSeparator("&")
     }
     
     //Check to see if there is a received error, if not, return the original local error.
     class func errorForData(data: NSData?, response: NSURLResponse?, error: NSError) -> NSError {
         
-        if let parsedResult = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments, error: nil) as? [String : AnyObject] {
+        if let parsedResult = (try? NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)) as? [String : AnyObject] {
             
             //Check for presence of "error" in JSON response...
             if let errorMessage = parsedResult[QuakeMapperClient.CommonJSONResponseKeys.Error] as? String {
@@ -308,7 +318,13 @@ class QuakeMapperClient {
     class func parseJSONWithCompletionHandler(data: NSData, completionHandler: (result: AnyObject!, error: NSError?) -> Void) {
         
         var parsingError: NSError?
-        let parsedResult: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &parsingError)
+        let parsedResult: AnyObject?
+        do {
+            parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
+        } catch let error as NSError {
+            parsingError = error
+            parsedResult = nil
+        }
         
         if let error = parsingError {
             

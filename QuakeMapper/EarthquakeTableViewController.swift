@@ -52,9 +52,13 @@ class EarthquakeTableViewController: UIViewController {
         
         //Perform initial fetch.
         var error: NSError?
-        fetchedResultsController.performFetch(&error)
+        do {
+            try fetchedResultsController.performFetch()
+        } catch let error1 as NSError {
+            error = error1
+        }
         
-        if let error = error {
+        if let _ = error {
             
             alertUserWithTitle("Error",
                 message: "Something went wrong. If it keeps happening you might have to reinstall.",
@@ -254,7 +258,7 @@ extension EarthquakeTableViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        let sectionInfo = fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo
+        let sectionInfo = fetchedResultsController.sections![section] 
         
         return sectionInfo.numberOfObjects
     }
@@ -294,7 +298,7 @@ extension EarthquakeTableViewController: UITableViewDelegate {
         let header = view as! UITableViewHeaderFooterView
         
         header.tintColor = UIColor.blackColor()
-        header.textLabel.textColor = UIColor(white: 0.9, alpha: 1.0)
+        header.textLabel!.textColor = UIColor(white: 0.9, alpha: 1.0)
     }
 }
 
@@ -339,9 +343,6 @@ extension EarthquakeTableViewController: NSFetchedResultsControllerDelegate {
         case .Move:
             tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
             tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
-            
-        default:
-            return
         }
     }
     
