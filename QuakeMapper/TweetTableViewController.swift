@@ -269,7 +269,7 @@ extension TweetTableViewController: UITableViewDelegate {
 
 extension TweetTableViewController: TWTRTweetViewDelegate {
     
-    func tweetView(tweetView: TWTRTweetView!, didSelectTweet tweet: TWTRTweet!) {
+    func tweetView(tweetView: TWTRTweetView, didSelectTweet tweet: TWTRTweet) {
         
         //Navigate to a full size TweetView.
         let nextVC = self.storyboard?.instantiateViewControllerWithIdentifier("TweetDetailViewController") as! TweetDetailViewController
@@ -278,7 +278,7 @@ extension TweetTableViewController: TWTRTweetViewDelegate {
         showViewController(nextVC, sender: self)
     }
     
-    func tweetView(tweetView: TWTRTweetView!, didTapURL url: NSURL!) {
+    func tweetView(tweetView: TWTRTweetView, didTapURL url: NSURL) {
         
         //This currently doesn't seem to work due to a bug in Twitter's TWTRTweetView.
         //I'm leaving it in for when they get round to fixing it.

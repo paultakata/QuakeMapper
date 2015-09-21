@@ -150,9 +150,9 @@ class MapViewController: UIViewController {
         Twitter.sharedInstance().logInGuestWithCompletion {
             session, error in
             
-            if let session = session,
-                accessToken = session.accessToken {
-                    
+            if let session = session {
+                
+                let accessToken = session.accessToken
                     //Store the bearer token for future API calls.
                     QuakeMapperClient.sharedInstance.twitterBearerToken = accessToken
             }

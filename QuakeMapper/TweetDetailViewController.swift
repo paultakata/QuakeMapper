@@ -56,7 +56,7 @@ class TweetDetailViewController: UIViewController {
 
 extension TweetDetailViewController: TWTRTweetViewDelegate {
     
-    func tweetView(tweetView: TWTRTweetView!, didSelectTweet tweet: TWTRTweet!) {
+    func tweetView(tweetView: TWTRTweetView, didSelectTweet tweet: TWTRTweet) {
         
         //Get the tweet's permalink url and open a webview to show it.
         let url = tweet.permalink
@@ -67,7 +67,7 @@ extension TweetDetailViewController: TWTRTweetViewDelegate {
         presentViewController(nextVC, animated: true, completion: nil)
     }
     
-    func tweetView(tweetView: TWTRTweetView!, didTapURL url: NSURL!) {
+    func tweetView(tweetView: TWTRTweetView, didTapURL url: NSURL) {
         
         //This currently doesn't seem to work due to a bug in Twitter's TWTRTweetView.
         //I'm leaving it in for when they get round to fixing it.
