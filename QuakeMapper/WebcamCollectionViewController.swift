@@ -218,16 +218,14 @@ class WebcamCollectionViewController: UIViewController {
     func fetchExistingWebcams() {
         
         //Perform fetch, alert user if something goes wrong.
-        let error: NSErrorPointer = nil
         do {
             try fetchedResultsController.performFetch()
-        } catch let error1 as NSError {
-            error.memory = error1
-        }
-        
-        if error != nil {
             
-            alertUserWithTitle("Something went wrong.", message: "If you keep seeing this you might have to reinstall.", retry: false)
+        } catch let error as NSError {
+            
+            alertUserWithTitle("Something went wrong.",
+                message: "If you keep seeing this you might have to reinstall. \(error.localizedDescription)",
+                retry: false)
         }
     }
     

@@ -69,8 +69,6 @@ extension TweetDetailViewController: TWTRTweetViewDelegate {
     
     func tweetView(tweetView: TWTRTweetView, didTapURL url: NSURL) {
         
-        //This currently doesn't seem to work due to a bug in Twitter's TWTRTweetView.
-        //I'm leaving it in for when they get round to fixing it.
         let nextVC = self.storyboard?.instantiateViewControllerWithIdentifier("WebViewController") as! WebViewController
         nextVC.tweetURL = url
         

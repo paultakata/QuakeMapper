@@ -147,16 +147,14 @@ class TweetTableViewController: UIViewController {
     func fetchExistingTweets() {
         
         //Perform fetch, inform the user if something goes wrong.
-        let error: NSErrorPointer = nil
         do {
             try fetchedResultsController.performFetch()
-        } catch let error1 as NSError {
-            error.memory = error1
-        }
-        
-        if error != nil {
             
-            alertUserWithTitle("Something went wrong.", message: "If you keep seeing this you might have to reinstall.", retry: false)
+        } catch let error as NSError {
+            
+            alertUserWithTitle("Something went wrong.",
+                message: "If you keep seeing this you might have to reinstall. \(error.localizedDescription)",
+                retry: false)
         }
     }
     
@@ -279,9 +277,6 @@ extension TweetTableViewController: TWTRTweetViewDelegate {
     }
     
     func tweetView(tweetView: TWTRTweetView, didTapURL url: NSURL) {
-        
-        //This currently doesn't seem to work due to a bug in Twitter's TWTRTweetView.
-        //I'm leaving it in for when they get round to fixing it.
         
         //Navigate to a webview showing the url tapped.
         let nextVC = self.storyboard?.instantiateViewControllerWithIdentifier("WebViewController") as! WebViewController

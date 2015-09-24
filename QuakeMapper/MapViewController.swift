@@ -421,22 +421,19 @@ class MapViewController: UIViewController {
     func fetchAllQuakes() -> [Earthquake] {
         
         //Create and execute the fetch request.
-        let error: NSErrorPointer = nil
         let fetchRequest = NSFetchRequest(entityName: "Earthquake")
         let results: [AnyObject]?
+        
         do {
             results = try sharedContext.executeFetchRequest(fetchRequest)
-        } catch let error1 as NSError {
-            error.memory = error1
-            results = nil
-        }
-        
-        //Check for errors.
-        if error != nil {
+            
+        } catch let error as NSError {
             
             alertUserWithTitle("Error",
-                message: "Something weird happened. If it keeps happening you might have to reinstall.",
+                message: "\(error.localizedDescription)",
                 retry: false)
+            
+            results = []
         }
         
         return results as! [Earthquake]
@@ -445,24 +442,20 @@ class MapViewController: UIViewController {
     func fetchWebcamsForEarthquake(earthquake: Earthquake) -> [Webcam] {
         
         //Create and execute the fetch request.
-        let error: NSErrorPointer = nil
         let fetchRequest = NSFetchRequest(entityName: "Webcam")
         fetchRequest.predicate = NSPredicate(format: "earthquake == %@", earthquake)
-        
         let results: [AnyObject]?
+        
         do {
             results = try sharedContext.executeFetchRequest(fetchRequest)
-        } catch let error1 as NSError {
-            error.memory = error1
-            results = nil
-        }
-        
-        //Check for errors.
-        if error != nil {
+            
+        } catch let error as NSError {
             
             alertUserWithTitle("Error",
-                message: "Something weird happened. If it keeps happening you might have to reinstall.",
+                message: "\(error.localizedDescription)",
                 retry: false)
+            
+            results = []
         }
         
         return results as! [Webcam]

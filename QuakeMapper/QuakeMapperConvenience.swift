@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 import MapKit
+import TwitterKit
 
 extension QuakeMapperClient {
     
@@ -111,6 +112,47 @@ extension QuakeMapperClient {
                 }
             }
         }
+
+            /*
+            let client = TWTRAPIClient()
+            let endpoint = QuakeMapperClient.Constants.BaseTwitterURL + QuakeMapperClient.Methods.Search
+            let parameters: [String : AnyObject] = [
+                TwitterURLKeys.Query   : "",
+                TwitterURLKeys.Geocode : "\(location.latitude),\(location.longitude),50km",
+                TwitterURLKeys.Since   : since,
+                TwitterURLKeys.Until   : until,
+                TwitterURLKeys.Count   : 100
+            ]
+            let clientError: NSErrorPointer = nil
+            
+            let request = Twitter.sharedInstance().APIClient.URLRequestWithMethod("GET", URL: endpoint, parameters: parameters, error: clientError)
+            
+            client.sendTwitterRequest(request, completion: {
+                response, data, connectionError in
+                
+                if connectionError == nil {
+                    
+                    var jsonError: NSError?
+                    let parsedResult: AnyObject?
+                    
+                    do {
+                        parsedResult = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
+                        
+                    } catch let error as NSError {
+                        
+                        jsonError = error
+                        parsedResult = nil
+                        
+                        completionHandler(success: false, errorString: jsonError?.localizedDescription, results: nil)
+                    }
+                    
+                    if let tweets = parsedResult?.valueForKey(TwitterJSONResponseKeys.Statuses) as? [AnyObject] {
+                        completionHandler(success: true, errorString: nil, results: tweets)
+                    }
+                }
+                
+            })
+            */
     }
     
     func getWebcamsForEarthquake(earthquake: Earthquake, withCompletion completion: (success: Bool, error: NSError?) -> Void) {
@@ -263,8 +305,7 @@ extension QuakeMapperClient {
         //Fetch the results array...
         dispatch_async(dispatch_get_main_queue(), {
             
-            //let error: NSErrorPointer = nil TODO:
-            let earthquakesMatchingIDs = (try! self.sharedContext.executeFetchRequest(fetchRequest)) as! [Earthquake]
+            let earthquakesMatchingIDs = try! self.sharedContext.executeFetchRequest(fetchRequest) as! [Earthquake]
             
             //...and use it to populate a set with the earthquake IDs.
             for quake in earthquakesMatchingIDs {

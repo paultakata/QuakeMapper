@@ -70,7 +70,7 @@ class Earthquake: NSManagedObject, MKAnnotation {
             let pathArray = [dirPath, filePath]
             let fileURL = NSURL.fileURLWithPathComponents(pathArray)!
             
-            return UIImage(contentsOfFile: fileURL.path!)
+            return UIImage(named: fileURL.path!)
         }
         
         return nil
