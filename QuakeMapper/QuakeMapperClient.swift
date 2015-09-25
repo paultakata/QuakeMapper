@@ -48,7 +48,7 @@ class QuakeMapperClient {
             
             //Build the URL and URL request specific to the website required.
             let urlString = website.baseURL() + method + QuakeMapperClient.escapedParameters(parameters)
-            var request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
+            var request = NSMutableURLRequest(URL: NSURL(string: urlString)!, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 10)
             
             //Add appropriate HTTP header field keys.
             request = website.addHTTPHeaderFieldKeysForGETRequest(request)
@@ -80,7 +80,7 @@ class QuakeMapperClient {
         completionHandler: (result: NSData?, error: NSError?) -> Void) {
             
             //Create request with urlString.
-            let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
+            let request = NSMutableURLRequest(URL: NSURL(string: urlString)!, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 10)
             
             //Make the request.
             let task = session.dataTaskWithRequest(request) {

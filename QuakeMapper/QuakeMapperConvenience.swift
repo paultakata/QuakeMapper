@@ -303,8 +303,8 @@ extension QuakeMapperClient {
         fetchRequest.predicate = NSPredicate(format: "id IN %@", newQuakeIDsSet)
         
         //Fetch the results array...
-        dispatch_async(dispatch_get_main_queue(), {
-            
+        //dispatch_async(dispatch_get_main_queue(), {
+        sharedContext.performBlock({
             let earthquakesMatchingIDs = try! self.sharedContext.executeFetchRequest(fetchRequest) as! [Earthquake]
             
             //...and use it to populate a set with the earthquake IDs.
@@ -321,6 +321,8 @@ extension QuakeMapperClient {
             for quake in quakeArray {
                 
                 if setToBeAdded.contains(quake[USGSJSONResponseKeys.ID] as! String) {
+                    
+                    //self.sharedContext.performBlock({ Earthquake(dictionary: quake, context: self.sharedContext) })
                     
                     Earthquake(dictionary: quake, context: self.sharedContext)
                 }

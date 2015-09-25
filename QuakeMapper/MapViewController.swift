@@ -409,34 +409,37 @@ class MapViewController: UIViewController {
                 
                 if success {
                     
-                    dispatch_async(dispatch_get_main_queue(), {
+                    //dispatch_async(dispatch_get_main_queue(), {
                         
                         self.allQuakes = self.fetchAllQuakes()
-                    })
+                    //})
                 }
             })
         }
     }
     
-    func fetchAllQuakes() -> [Earthquake] {
+    func fetchAllQuakes() -> [Earthquake]? {
         
         //Create and execute the fetch request.
         let fetchRequest = NSFetchRequest(entityName: "Earthquake")
-        let results: [AnyObject]?
+        var results: [AnyObject]?
         
-        do {
-            results = try sharedContext.executeFetchRequest(fetchRequest)
+        self.sharedContext.performBlockAndWait({
             
-        } catch let error as NSError {
-            
-            alertUserWithTitle("Error",
-                message: "\(error.localizedDescription)",
-                retry: false)
-            
-            results = []
-        }
+            do {
+                results = try self.sharedContext.executeFetchRequest(fetchRequest)
+                
+            } catch let error as NSError {
+                
+                self.alertUserWithTitle("Error",
+                    message: "\(error.localizedDescription)",
+                    retry: false)
+                
+                results = []
+            }
+        })
         
-        return results as! [Earthquake]
+        return results as? [Earthquake]
     }
     
     func fetchWebcamsForEarthquake(earthquake: Earthquake) -> [Webcam] {
